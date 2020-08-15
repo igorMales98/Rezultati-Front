@@ -20,4 +20,8 @@ export class AppComponent implements OnInit {
       this.zemlje = zemlje;
     });
   }
+
+  prikaziLige(zemlja: Zemlja) {
+    zemlja.prikazaneLige = zemlja.prikazaneLige !== true;
+  }
 }

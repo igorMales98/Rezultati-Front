@@ -41,5 +41,33 @@
   </mat-tab>
 </mat-tab-group>
 
+<div class="container" style="padding-top: 30px;">
+  <div class="row">
+
+    <div class="col-3">
+      <div class="card" style="background-color: #f2f2f2;">
+        <div class="card-body">
+          <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
+            <a href="#" class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
+            <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
+              <a href="#" class="liga-link">{{liga.naziv}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Srbija</h1>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <router-outlet></router-outlet>
 
