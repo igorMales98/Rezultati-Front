@@ -22,6 +22,7 @@ import { KosarkaComponent } from './kosarka/kosarka.component';
 import { OdbojkaComponent } from './odbojka/odbojka.component';
 import { TenisComponent } from './tenis/tenis.component';
 import { LoginComponent } from './login/login.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     KosarkaComponent,
     OdbojkaComponent,
     TenisComponent,
-    LoginComponent
+    LoginComponent,
+    RegistracijaComponent
   ],
   imports: [
     BrowserModule,

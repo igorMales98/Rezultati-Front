@@ -1,0 +1,24 @@
+.registracija-link, .sifra-link {
+  color: black;
+}
+
+a.registracija-link:link, a.sifra-link:link {
+  color: black;
+  text-decoration: none;
+}
+
+a.registracija-link:visited, a.sifra-link:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a.registracija-link:hover, a.sifra-link:hover {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a.registracija-link:active, a.sifra-link:active {
+  color: black;
+  text-decoration: none;
+}

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginComponent} from './login/login.component';
+import {RegistracijaComponent} from './registracija/registracija.component';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,13 @@ export class AppComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '550px',
       height: '550px'
+    });
+  }
+
+  otvoriRegistraciju() {
+    const dialogRef = this.dialog.open(RegistracijaComponent, {
+      width: '650px',
+      height: '650px'
     });
   }
 }
