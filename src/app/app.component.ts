@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {LoginComponent} from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'Rezultati-Front';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -28,4 +30,10 @@ export class AppComponent implements OnInit {
     }
   }
 
+  otvoriPrijavu() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '550px',
+      height: '550px'
+    });
+  }
 }
