@@ -2,16 +2,16 @@
   <span>Rezultati sportova</span>
   <span class="example-spacer"></span>
   <span>Prijava</span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+  <button mat-icon-button class="example-icon favorite-icon">
     <mat-icon>login</mat-icon>
   </button>
   <span>Registracija</span>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button mat-icon-button class="example-icon">
     <mat-icon>how_to_reg</mat-icon>
   </button>
 </mat-toolbar>
 
-<mat-tab-group mat-align-tabs="center" style="{background-color: limegreen}">
+<mat-tab-group mat-align-tabs="center" style="{background-color: limegreen}" (selectedTabChange)="tabKlik($event)">
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">sports_soccer</mat-icon>
@@ -36,37 +36,10 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">sports_volleyball</mat-icon>
-      Tenis
+      Odbojka
     </ng-template>
   </mat-tab>
 </mat-tab-group>
-
-<div class="container" style="padding-top: 30px;">
-  <div class="row">
-
-    <div class="col-3">
-      <div class="card" style="background-color: #f2f2f2;">
-        <div class="card-body">
-          <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
-            <a href="#" class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
-            <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
-              <a href="#" class="liga-link">{{liga.naziv}}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-8">
-      <div class="card">
-        <div class="card-body">
-          <h1>Srbija</h1>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 <router-outlet></router-outlet>

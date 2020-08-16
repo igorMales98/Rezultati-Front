@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ZemljaService} from './services/zemlja.service';
-import {Zemlja} from './model/zemlja';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +9,23 @@ import {Zemlja} from './model/zemlja';
 export class AppComponent implements OnInit {
   title = 'Rezultati-Front';
 
-  zemlje: Zemlja[] = [];
-
-  constructor(private zemljaService: ZemljaService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
-    this.zemljaService.getAll().subscribe(zemlje => {
-      this.zemlje = zemlje;
-    });
+    this.router.navigate(['/fudbal']);
   }
 
-  prikaziLige(zemlja: Zemlja) {
-    zemlja.prikazaneLige = zemlja.prikazaneLige !== true;
+  tabKlik(tab) {
+    if (tab.index === 0) {
+      this.router.navigate(['/fudbal']);
+    } else if (tab.index === 1) {
+      this.router.navigate(['/kosarka']);
+    } else if (tab.index === 2) {
+      this.router.navigate(['/tenis']);
+    } else if (tab.index === 3) {
+      this.router.navigate(['/odbojka']);
+    }
   }
+
 }

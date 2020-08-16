@@ -1,0 +1,38 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-tab-icon {
+  margin-right: 8px;
+}
+
+.zemlja-item {
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+.liga-item {
+  padding-left: 10px;
+  padding-top: 5px;
+  font-size: 15px;
+}
+
+a.zemlja-link:link, a.liga-link:link {
+  color: black;
+  text-decoration: none;
+}
+
+a.zemlja-link:visited, a.liga-link:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a.zemlja-link:hover, a.liga-link:hover {
+  color: gray;
+  text-decoration: underline;
+}
+
+a.zemlja-link:active, a.liga-link:active {
+  color: black;
+  text-decoration: none;
+}

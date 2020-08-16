@@ -1,0 +1,59 @@
+<div class="container" style="padding-top: 30px;">
+  <div class="row">
+
+    <div class="col-3">
+      <div class="card" style="background-color: #f2f2f2;">
+        <div class="card-body">
+          <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
+            <a href="#" class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
+            <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
+              <a href="#" class="liga-link">{{liga.naziv}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <div class="card" style="background-color: #f2f2f2;">
+        <div class="card-body">
+          <div style="display: flex;">
+            <mat-tab-group mat-align-tabs="center" style="padding-top: 0.185em;">
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">select_all</mat-icon>
+                  Sve utakmice
+                </ng-template>
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">filter_5</mat-icon>
+                  Top 5
+                </ng-template>
+              </mat-tab>
+
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">live_tv</mat-icon>
+                  Uživo
+                </ng-template>
+              </mat-tab>
+
+            </mat-tab-group>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Izaberite datum</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
