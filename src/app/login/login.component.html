@@ -1,0 +1,29 @@
+<form class="text-center border border-light p-5">
+
+  <p class="h4 mb-4">Prijava</p>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" id="defaultLoginFormEmail" placeholder="E-mail">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Lozinka</mat-label>
+    <input matInput type="password" id="defaultLoginFormPassword" placeholder="Lozinka">
+  </mat-form-field>
+
+  <div class="d-flex justify-content-around">
+    <div>
+      <a class="sifra-link">Zaboravili ste lozinku?</a>
+    </div>
+  </div>
+
+  <!-- Sign in button -->
+  <button mdbBtn color="info" block="true" class="my-4" type="submit">Prijava</button>
+
+  <!-- Register -->
+  <p>Nemate nalog?
+    <a class="registracija-link" (click)="predjiNaRegistraciju()">Registracija</a>
+  </p>
+
+</form>

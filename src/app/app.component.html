@@ -1,12 +1,12 @@
 <mat-toolbar>
-  <span>Rezultati sportova</span>
+  <a href="#" class="pocetna-link">Rezultati sportova</a>
   <span class="example-spacer"></span>
   <span>Prijava</span>
-  <button mat-icon-button class="example-icon favorite-icon">
+  <button mat-icon-button class="example-icon favorite-icon" (click)="otvoriPrijavu()">
     <mat-icon>login</mat-icon>
   </button>
   <span>Registracija</span>
-  <button mat-icon-button class="example-icon">
+  <button mat-icon-button class="example-icon favorite-icon" (click)="otvoriRegistraciju()">
     <mat-icon>how_to_reg</mat-icon>
   </button>
 </mat-toolbar>

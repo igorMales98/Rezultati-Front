@@ -5,9 +5,9 @@
       <div class="card" style="background-color: #f2f2f2;">
         <div class="card-body">
           <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
-            <a href="#" class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
+            <a class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
             <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
-              <a href="#" class="liga-link">{{liga.naziv}}</a>
+              <a class="liga-link">{{liga.naziv}}</a>
             </div>
           </div>
         </div>

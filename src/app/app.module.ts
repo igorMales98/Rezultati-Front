@@ -21,6 +21,8 @@ import { FudbalComponent } from './fudbal/fudbal.component';
 import { KosarkaComponent } from './kosarka/kosarka.component';
 import { OdbojkaComponent } from './odbojka/odbojka.component';
 import { TenisComponent } from './tenis/tenis.component';
+import { LoginComponent } from './login/login.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TenisComponent } from './tenis/tenis.component';
     FudbalComponent,
     KosarkaComponent,
     OdbojkaComponent,
-    TenisComponent
+    TenisComponent,
+    LoginComponent,
+    RegistracijaComponent
   ],
   imports: [
     BrowserModule,

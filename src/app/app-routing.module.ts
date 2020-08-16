@@ -4,6 +4,8 @@ import {FudbalComponent} from './fudbal/fudbal.component';
 import {KosarkaComponent} from './kosarka/kosarka.component';
 import {OdbojkaComponent} from './odbojka/odbojka.component';
 import {TenisComponent} from './tenis/tenis.component';
+import {LoginComponent} from './login/login.component';
+import {RegistracijaComponent} from './registracija/registracija.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,12 @@ const routes: Routes = [
   },
   {
     path: 'tenis', component: TenisComponent
+  },
+  {
+    path: 'prijava', component: LoginComponent
+  },
+  {
+    path: 'registracija', component: RegistracijaComponent
   }
 ];
 

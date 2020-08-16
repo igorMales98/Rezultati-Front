@@ -17,6 +17,10 @@
   font-size: 15px;
 }
 
+.zemlja-link, .liga-link {
+  color: black;
+}
+
 a.zemlja-link:link, a.liga-link:link {
   color: black;
   text-decoration: none;
@@ -30,6 +34,7 @@ a.zemlja-link:visited, a.liga-link:visited {
 a.zemlja-link:hover, a.liga-link:hover {
   color: gray;
   text-decoration: underline;
+  cursor: default;
 }
 
 a.zemlja-link:active, a.liga-link:active {

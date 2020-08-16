@@ -1,0 +1,41 @@
+<form class="text-center border border-light p-5">
+
+  <p class="h4 mb-4">Registracija</p>
+
+  <div class="form-row mb-4">
+    <div class="col">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Ime</mat-label>
+        <input matInput type="text" id="defaultRegisterFormFirstName" placeholder="Ime">
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Prezime</mat-label>
+        <input matInput type="text" id="defaultRegisterFormLastName" placeholder="Prezime">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput type=" email" id="defaultRegisterFormEmail" placeholder="E-mail">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Lozinka</mat-label>
+    <input matInput type="password" id="defaultRegisterFormPassword" placeholder="Lozinka"
+           aria-describedby="defaultRegisterFormPasswordHelpBlock">
+  </mat-form-field>
+  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+    Mora da sadrži makar 5 karaktera i jedan broj.
+  </small>
+
+  <p>Imate nalog?
+    <a class="registracija-link" (click)="predjiNaPrijavu()">Prijava</a>
+  </p>
+
+  <button mdbBtn color="info" block="true" class="my-4" type="submit">Registracija</button>
+
+</form>
