@@ -51,6 +51,57 @@
             </mat-form-field>
 
           </div>
+
+          <div id="rez" *ngFor="let zemlja of zemljeRezultata">
+            <table class="table table-sm table-hover" *ngFor="let liga of zemlja.lige">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let rezultat of fudbalskiRezultati">
+              <tr *ngIf="rezultat.domacin.zemlja.id === zemlja.id && rezultat.liga.id === liga.id">
+                <td>{{(rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[3]
+                + ' : ' + (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
+                <td>{{rezultat.domacin.naziv}}</td>
+                <td>{{rezultat.goloviDomacin + '  -  ' + rezultat.goloviGost}}</td>
+                <td>{{rezultat.gost.naziv}}</td>
+              </tr>
+              </tbody>
+            </table>
+
+
+            <!--          <div id="prikazRezultata" *ngFor="let rezultat of fudbalskiRezultati">-->
+            <!--            <table class="table table-sm table-hover">-->
+            <!--              <thead class="thead-dark">-->
+            <!--              <tr>-->
+            <!--                <th scope="col">{{rezultat.domacin.zemlja.naziv + ' : ' + rezultat.liga.naziv}}</th>-->
+            <!--              </tr>-->
+            <!--              </thead>-->
+            <!--              <tbody>-->
+            <!--              <tr>-->
+            <!--                <th scope="row">1</th>-->
+            <!--                <td>Mark</td>-->
+            <!--                <td>Otto</td>-->
+            <!--                <td>@mdo</td>-->
+            <!--              </tr>-->
+            <!--              <tr>-->
+            <!--                <th scope="row">2</th>-->
+            <!--                <td>Jacob</td>-->
+            <!--                <td>Thornton</td>-->
+            <!--                <td>@fat</td>-->
+            <!--              </tr>-->
+            <!--              <tr>-->
+            <!--                <th scope="row">3</th>-->
+            <!--                <td>Larry</td>-->
+            <!--                <td>the Bird</td>-->
+            <!--                <td>@twitter</td>-->
+            <!--              </tr>-->
+            <!--              </tbody>-->
+            <!--            </table>-->
+
+          </div>
+
         </div>
       </div>
     </div>
