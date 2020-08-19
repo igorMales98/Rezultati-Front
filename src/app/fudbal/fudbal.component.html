@@ -45,15 +45,16 @@
 
             <mat-form-field appearance="fill">
               <mat-label>Izaberite datum</mat-label>
-              <input matInput [matDatepicker]="picker">
+              <input matInput [matDatepicker]="picker" [formControl]="date" disabled
+                     (dateChange)="dobaviRezultateZaDatum($event)">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker #picker color="warn" disabled="false"></mat-datepicker>
             </mat-form-field>
 
           </div>
 
           <div id="rez" *ngFor="let zemlja of zemljeRezultata">
-            <table class="table table-sm table-hover" *ngFor="let liga of zemlja.lige">
+            <table class="table table-sm table-hover" *ngFor="let liga of ligeRezultata">
               <thead class="thead-dark">
               <tr>
                 <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>

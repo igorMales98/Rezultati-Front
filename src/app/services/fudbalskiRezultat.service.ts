@@ -13,4 +13,8 @@ export class FudbalskiRezultatService {
   getAll() {
     return this.httpClient.get<FudbalskiRezultat[]>('http://localhost:8080/fudbalski-rezultat');
   }
+
+  getForTheDate(date: Date) {
+    return this.httpClient.get<FudbalskiRezultat[]>('http://localhost:8080/fudbalski-rezultat/' + date);
+  }
 }

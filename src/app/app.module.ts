@@ -13,7 +13,7 @@ import {MatListModule} from '@angular/material/list';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {HttpClientModule} from '@angular/common/http';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -34,24 +34,25 @@ import { RegistracijaComponent } from './registracija/registracija.component';
     LoginComponent,
     RegistracijaComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatListModule,
-    MDBBootstrapModule.forRoot(),
-    HttpClientModule,
-    MatDatepickerModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatSidenavModule,
+        MatListModule,
+        MDBBootstrapModule.forRoot(),
+        HttpClientModule,
+        MatDatepickerModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,
+        ReactiveFormsModule
+    ],
   providers: [
     MatDatepickerModule
   ],
