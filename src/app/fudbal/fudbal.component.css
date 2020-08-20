@@ -47,3 +47,8 @@ a.zemlja-link:active, a.liga-link:active {
   color: black;
   text-decoration: none;
 }
+
+td {
+  text-align: left;
+  width: 25%;
+}

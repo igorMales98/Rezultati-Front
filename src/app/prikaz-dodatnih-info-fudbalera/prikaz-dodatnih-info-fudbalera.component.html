@@ -13,7 +13,10 @@
     <td>{{igrac.ime}}</td>
     <td>{{igrac.prezime}}</td>
     <td>{{igrac.pozicija}}</td>
-    <td>{{igrac.datumRodjenja}}</td>
+    <td>{{(igrac.datumRodjenja[2] < 10 ? '0' : '') + igrac.datumRodjenja[2] + '.' +
+    (igrac.datumRodjenja[1] < 10 ? '0' : '') + igrac.datumRodjenja[1] + '.' +
+    igrac.datumRodjenja[0]}}
+    </td>
     <td>{{igrac.zemljaRodjenja.naziv}}</td>
   </tr>
   </tbody>

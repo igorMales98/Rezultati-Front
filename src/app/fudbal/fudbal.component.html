@@ -7,7 +7,7 @@
           <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
             <a class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
             <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
-              <a class="liga-link" (click)="prikaziKluboveIzLige(liga)">{{liga.naziv}}</a>
+              <a *ngIf="liga.sport.id == '1'" class="liga-link" (click)="prikaziKluboveIzLige(liga)">{{liga.naziv}}</a>
             </div>
           </div>
         </div>
@@ -56,13 +56,14 @@
           <div id="rez" *ngFor="let zemlja of zemljeRezultata">
             <div *ngFor="let liga of ligeRezultata">
               <div *ngFor="let ligaZemlje of zemlja.lige">
-                <table class="table table-sm table-hover" *ngIf="liga.id === ligaZemlje.id">
+                <table class="table table-sm table-hover"
+                       *ngIf="liga.id === ligaZemlje.id">
                   <thead class="thead-dark">
                   <tr>
                     <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>
                   </tr>
                   </thead>
-                  <tbody *ngFor="let rezultat of fudbalskiRezultati">
+                  <tbody *ngFor="let rezultat of fudbalskiRezultati" style="text-align: center;">
                   <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id">
                     <td>{{(rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[3]
                     + ' : ' + (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
