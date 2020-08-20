@@ -31,13 +31,24 @@ a.zemlja-link:visited, a.liga-link:visited {
   text-decoration: none;
 }
 
-a.zemlja-link:hover, a.liga-link:hover {
+a.zemlja-link:hover {
   color: gray;
   text-decoration: underline;
   cursor: default;
 }
 
+a.liga-link:hover {
+  color: gray;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 a.zemlja-link:active, a.liga-link:active {
   color: black;
   text-decoration: none;
+}
+
+td {
+  text-align: left;
+  width: 25%;
 }

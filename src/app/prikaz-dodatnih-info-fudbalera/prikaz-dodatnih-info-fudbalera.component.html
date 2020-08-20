@@ -1,0 +1,23 @@
+<table class="table table-responsive-lg table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th> Ime</th>
+    <th> Prezime</th>
+    <th> Pozicija</th>
+    <th> Datum rodjenja</th>
+    <th> Zemlja rodjenja</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{igrac.ime}}</td>
+    <td>{{igrac.prezime}}</td>
+    <td>{{igrac.pozicija}}</td>
+    <td>{{(igrac.datumRodjenja[2] < 10 ? '0' : '') + igrac.datumRodjenja[2] + '.' +
+    (igrac.datumRodjenja[1] < 10 ? '0' : '') + igrac.datumRodjenja[1] + '.' +
+    igrac.datumRodjenja[0]}}
+    </td>
+    <td>{{igrac.zemljaRodjenja.naziv}}</td>
+  </tr>
+  </tbody>
+</table>

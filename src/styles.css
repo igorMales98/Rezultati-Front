@@ -21,3 +21,13 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+.cdk-global-scrollblock {
+  position: static;
+  overflow: hidden !important;
+}
+
+.mat-dialog-container {
+  padding: 14px !important;
+  border-radius: 14px !important;
+}

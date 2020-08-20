@@ -1,0 +1,26 @@
+<div style="background-color: #f2f2f2;">
+  <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
+    <mat-card-header>
+      <mat-card-title>{{liga.naziv}}</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+
+  <table class="table table-responsive-lg table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th> Naziv kluba</th>
+      <th> Igrači i trener</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let klub of klubovi">
+    <tr>
+      <td>{{klub.naziv}}</td>
+      <td>
+        <button mat-mini-fab color="primary" (click)="otvoriInfoOIgracimaITreneru(klub)">
+          <mat-icon>people</mat-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -16,13 +16,26 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core';
-import { FudbalComponent } from './fudbal/fudbal.component';
-import { KosarkaComponent } from './kosarka/kosarka.component';
-import { OdbojkaComponent } from './odbojka/odbojka.component';
-import { TenisComponent } from './tenis/tenis.component';
-import { LoginComponent } from './login/login.component';
-import { RegistracijaComponent } from './registracija/registracija.component';
+import {MAT_RIPPLE_GLOBAL_OPTIONS, MatNativeDateModule, RippleGlobalOptions} from '@angular/material/core';
+import {FudbalComponent} from './fudbal/fudbal.component';
+import {KosarkaComponent} from './kosarka/kosarka.component';
+import {OdbojkaComponent} from './odbojka/odbojka.component';
+import {TenisComponent} from './tenis/tenis.component';
+import {LoginComponent} from './login/login.component';
+import {RegistracijaComponent} from './registracija/registracija.component';
+import {PrikazKlubovaComponent} from './prikaz-klubova/prikaz-klubova.component';
+import {MatCardModule} from '@angular/material/card';
+import { PrikazIgracaComponent } from './prikaz-igraca/prikaz-igraca.component';
+import { PrikazDodatnihInfoFudbaleraComponent } from './prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+
+const globalRippleConfig: RippleGlobalOptions = {
+  disabled: false,
+  animation: {
+    enterDuration: 500,
+    exitDuration: 0
+  }
+};
 
 @NgModule({
   declarations: [
@@ -32,29 +45,35 @@ import { RegistracijaComponent } from './registracija/registracija.component';
     OdbojkaComponent,
     TenisComponent,
     LoginComponent,
-    RegistracijaComponent
+    RegistracijaComponent,
+    PrikazKlubovaComponent,
+    PrikazIgracaComponent,
+    PrikazDodatnihInfoFudbaleraComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatTabsModule,
-        MatSidenavModule,
-        MatListModule,
-        MDBBootstrapModule.forRoot(),
-        HttpClientModule,
-        MatDatepickerModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatNativeDateModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MDBBootstrapModule.forRoot(),
+    HttpClientModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatBottomSheetModule
+  ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig}
   ],
   bootstrap: [AppComponent]
 })

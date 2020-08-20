@@ -1,0 +1,264 @@
+<div class="bg">
+
+  <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
+    <mat-card-header>
+      <mat-card-title><b><i><u>{{klub.naziv}}</u></i></b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h3>Trener : {{klub.trener.ime + ' ' + klub.trener.prezime}}</h3>
+    </mat-card-content>
+  </mat-card>
+
+
+  <div class="test">
+    <main style="opacity: 1;" class="">
+      <div class="js-stage stage texture">
+        <div style="opacity: 1; transform: translateZ(-200px) translateY(0px);" class="js-world world">
+
+          <div id="igraci" class="team">
+            <div *ngFor="let igrac of klub.fudbaleri">
+              <!--desni napadac/krilo-->
+              <div class="js-player player" data-x="160" data-y="-190" *ngIf="igrac.pozicija == 'DESNO_KRILO'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(160px) translateZ(-190px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/desnivezni.jpg">
+                </div>
+              </div>
+
+              <!--centralni napadac/krilo-->
+              <div class="js-player player" data-x="0" data-y="-190" *ngIf="igrac.pozicija == 'CENTARFOR'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(0px) translateZ(-190px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/centarfor.jpg">
+                </div>
+              </div>
+
+              <!--levi napadac/krilo-->
+              <div class="js-player player" data-x="-160" data-y="-190" *ngIf="igrac.pozicija == 'LEVO_KRILO'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(-160px) translateZ(-190px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/levivezni.jpg">
+                </div>
+              </div>
+
+              <!--desni vezni-->
+              <div class="js-player player" data-x="150" data-y="50" *ngIf="igrac.pozicija == 'DESNI_VEZNI'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(150px) translateZ(50px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/vezni.jpg">
+                </div>
+              </div>
+
+              <!--defanizivni vezni-->
+              <div class="js-player player" data-x="0" data-y="100" *ngIf="igrac.pozicija == 'ZADNJI_VEZNI'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateZ(100px) translateX(0px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span></div>
+                <div class="player__img"><img
+                  src="../../assets/images/vezni.jpg"></div>
+              </div>
+
+              <!--levi vezni-->
+              <div class="js-player player" data-x="-150" data-y="50" *ngIf="igrac.pozicija == 'LEVI_VEZNI'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(-150px) translateZ(50px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/vezni.jpg">
+                </div>
+              </div>
+
+              <!--levi bek-->
+              <div class="js-player player" data-x="-200" data-y="180" *ngIf="igrac.pozicija == 'LEVI_BEK'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(-200px) translateZ(180px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span>
+                </div>
+                <div class="player__img"><img src="../../assets/images/levibek.jpg">
+                </div>
+              </div>
+
+              <!--desni bek-->
+              <div class="js-player player" data-x="200" data-y="180" *ngIf="igrac.pozicija == 'DESNI_BEK'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(200px) translateZ(180px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span></div>
+                <div class="player__img"><img src="../../assets/images/desnibek.jpg">
+                </div>
+              </div>
+
+              <!--desni stoper-->
+              <div class="js-player player" data-x="100" data-y="300" *ngIf="igrac.pozicija == 'DESNI_ŠTOPER'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(100px) translateZ(300px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span></div>
+                <div class="player__img"><img src="../../assets/images/stoper.jpg">
+                </div>
+              </div>
+
+              <!--levi stoper-->
+              <div class="js-player player" data-x="-100" data-y="300" *ngIf="igrac.pozicija == 'LEVI_ŠTOPER'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateX(-100px) translateZ(300px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span></div>
+                <div class="player__img"><img src="../../assets/images/stoper.jpg"></div>
+              </div>
+
+              <!--golman-->
+              <div class="js-player player" data-x="0" data-y="410" *ngIf="igrac.pozicija == 'GOLMAN'"
+                   (click)="prikaziDodatneInfoOIgracu(igrac)"
+                   style="opacity: 1; display: block; transform: translateZ(410px) translateX(0px) translateY(0px);">
+                <div class="player__placeholder"></div>
+                <div class="player__card"><h3>{{igrac.prezime}}</h3>
+                  <ul class="player__card__list">
+                    <li><span>Ime i Prezime</span><br>{{igrac.ime + ' ' + igrac.prezime}}</li>
+                    <li><span>Datum rodjenja</span><br>{{igrac.datumRodjenja}}</li>
+                    <li><span>Zemlja rodjenja</span><br>{{igrac.zemljaRodjenja}}</li>
+                  </ul>
+                </div>
+                <div class="player__label"
+                     style="display: block; transform: translateX(0px) translateY(0px); opacity: 1;">
+                  <span>{{igrac.prezime}}</span></div>
+                <div class="player__img"><img src="../../assets/images/golman.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="terrain js-terrain">
+            <div class="field field--alt"></div>
+            <div class="field ground">
+              <div class="field__texture field__texture--gradient"></div>
+              <div class="field__texture field__texture--gradient-b"></div>
+              <div class="field__texture field__texture--grass"></div>
+              <div class="field__line field__line--goal"></div>
+              <div class="field__line field__line--goal field__line--goal--far"></div>
+              <div class="field__line field__line--outline"></div>
+              <div class="field__line field__line--penalty"></div>
+              <div class="field__line field__line--penalty-arc"></div>
+              <div class="field__line field__line--penalty-arc field__line--penalty-arc--far"></div>
+              <div class="field__line field__line--mid"></div>
+              <div class="field__line field__line--circle"></div>
+              <div class="field__line field__line--penalty field__line--penalty--far"></div>
+            </div>
+            <div class="field__side field__side--front"></div>
+            <div class="field__side field__side--left"></div>
+            <div class="field__side field__side--right"></div>
+            <div class="field__side field__side--back"></div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
