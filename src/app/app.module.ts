@@ -26,6 +26,8 @@ import {RegistracijaComponent} from './registracija/registracija.component';
 import {PrikazKlubovaComponent} from './prikaz-klubova/prikaz-klubova.component';
 import {MatCardModule} from '@angular/material/card';
 import { PrikazIgracaComponent } from './prikaz-igraca/prikaz-igraca.component';
+import { PrikazDodatnihInfoFudbaleraComponent } from './prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -45,7 +47,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     LoginComponent,
     RegistracijaComponent,
     PrikazKlubovaComponent,
-    PrikazIgracaComponent
+    PrikazIgracaComponent,
+    PrikazDodatnihInfoFudbaleraComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatInputModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatBottomSheetModule
   ],
   providers: [
     MatDatepickerModule,
