@@ -7,6 +7,8 @@ import {FudbalskiRezultatService} from '../services/fudbalskiRezultat.service';
 import {Liga} from '../model/liga';
 import {FormControl} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {MatDialog} from '@angular/material/dialog';
+import {PrikazKlubovaComponent} from '../prikaz-klubova/prikaz-klubova.component';
 
 @Component({
   selector: 'app-fudbal',
@@ -25,15 +27,18 @@ export class FudbalComponent implements OnInit {
   ligeRezultata: Liga[] = [];
 
   date = new FormControl(new Date());
+  selektovaniDatum: Date;
 
-  constructor(private zemljaService: ZemljaService, private router: Router, private fudbalskiRezultatService: FudbalskiRezultatService) {
+  constructor(private zemljaService: ZemljaService, private router: Router, private fudbalskiRezultatService: FudbalskiRezultatService,
+              public dialog: MatDialog) {
+    this.selektovaniDatum = new Date();
   }
 
   ngOnInit(): void {
     this.zemljaService.getAll().subscribe(zemlje => {
       this.zemlje = zemlje;
     });
-    this.fudbalskiRezultatService.getAll().subscribe(rezultati => {
+    this.fudbalskiRezultatService.getForTheDate(this.selektovaniDatum).subscribe(rezultati => {
       this.fudbalskiRezultati = rezultati;
       this.srediPrikaz();
     });
@@ -76,10 +81,14 @@ export class FudbalComponent implements OnInit {
     this.fudbalskiRezultatService.getForTheDate(date).subscribe(rezultati => {
       this.fudbalskiRezultati = rezultati;
       this.srediPrikaz();
+      if (this.selektovanPrikaz === 1) {
+        this.filtrirajTop5();
+      }
     });
   }
 
   tabKlik(tab) {
+    this.selektovanPrikaz = tab.index;
     if (tab.index === 0) {
       this.zemljeRezultata = [];
       this.ligeRezultata = [];
@@ -129,4 +138,11 @@ export class FudbalComponent implements OnInit {
     console.log('proso je');
   }
 
+  prikaziKluboveIzLige(liga: Liga) {
+    this.dialog.open(PrikazKlubovaComponent, {
+      width: '600px',
+      height: '600px',
+      data: liga
+    });
+  }
 }
