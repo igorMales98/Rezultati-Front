@@ -25,6 +25,7 @@ import {LoginComponent} from './login/login.component';
 import {RegistracijaComponent} from './registracija/registracija.component';
 import {PrikazKlubovaComponent} from './prikaz-klubova/prikaz-klubova.component';
 import {MatCardModule} from '@angular/material/card';
+import { PrikazIgracaComponent } from './prikaz-igraca/prikaz-igraca.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -43,7 +44,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     TenisComponent,
     LoginComponent,
     RegistracijaComponent,
-    PrikazKlubovaComponent
+    PrikazKlubovaComponent,
+    PrikazIgracaComponent
   ],
   imports: [
     BrowserModule,
