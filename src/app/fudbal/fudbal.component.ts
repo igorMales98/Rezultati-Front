@@ -55,7 +55,7 @@ export class FudbalComponent implements OnInit {
         }
       }
       for (const liga of this.ligeRezultata) {
-        if (liga.id === rezultat.domacin.liga.id) {
+        if (liga.id === rezultat.liga.id) {
           ligaExist = true;
           break;
         }
@@ -64,7 +64,7 @@ export class FudbalComponent implements OnInit {
         this.zemljeRezultata.push(rezultat.domacin.zemlja);
       }
       if (!ligaExist) {
-        this.ligeRezultata.push(rezultat.domacin.liga);
+        this.ligeRezultata.push(rezultat.liga);
       }
       exist = false;
       ligaExist = false;
@@ -76,6 +76,9 @@ export class FudbalComponent implements OnInit {
   }
 
   dobaviRezultateZaDatum(event: MatDatepickerInputEvent<Date>) {
+    this.selektovanPrikaz = 0;
+    this.zemljeRezultata = [];
+    this.ligeRezultata = [];
     console.log(event.value);
     const date = event.value;
     this.fudbalskiRezultatService.getForTheDate(date).subscribe(rezultati => {
