@@ -10,4 +10,7 @@ export class FudbalskiKlub {
   trener: Trener;
   liga: Liga;
   fudbaleri: Fudbaler[] = [];
+
+  // pomocna polja
+  bodovi: number;
 }

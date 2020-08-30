@@ -143,8 +143,8 @@ export class FudbalComponent implements OnInit {
 
   prikaziKluboveIzLige(liga: Liga) {
     this.dialog.open(PrikazKlubovaComponent, {
-      width: '600px',
-      height: '600px',
+      width: '800px',
+      height: '800px',
       data: liga
     });
   }

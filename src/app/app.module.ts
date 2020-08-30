@@ -28,6 +28,10 @@ import {MatCardModule} from '@angular/material/card';
 import { PrikazIgracaComponent } from './prikaz-igraca/prikaz-igraca.component';
 import { PrikazDodatnihInfoFudbaleraComponent } from './prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PrikazRezultataKlubaComponent } from './prikaz-rezultata-kluba/prikaz-rezultata-kluba.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -48,7 +52,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     RegistracijaComponent,
     PrikazKlubovaComponent,
     PrikazIgracaComponent,
-    PrikazDodatnihInfoFudbaleraComponent
+    PrikazDodatnihInfoFudbaleraComponent,
+    PrikazRezultataKlubaComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,10 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatNativeDateModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [
     MatDatepickerModule,

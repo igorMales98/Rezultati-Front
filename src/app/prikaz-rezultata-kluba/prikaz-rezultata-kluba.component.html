@@ -1,0 +1,19 @@
+<table class="table table-sm table-hover">
+  <thead class="thead-dark">
+  </thead>
+  <tbody *ngFor="let rezultat of rezultati" style="text-align: center;">
+  <tr>
+    <td>{{(rezultat.vremeOdrzavanjaUtakmice[2] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[2] + '.' +
+    (rezultat.vremeOdrzavanjaUtakmice[1] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[1] + '.' +
+    rezultat.vremeOdrzavanjaUtakmice[0] + '   ' +
+    (rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') +
+    rezultat.vremeOdrzavanjaUtakmice[3] +
+    ' : ' +
+    (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') +
+    rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
+    <td>{{rezultat.domacin.naziv}}</td>
+    <td>{{rezultat.goloviDomacin + '  -  ' + rezultat.goloviGost}}</td>
+    <td>{{rezultat.gost.naziv}}</td>
+  </tr>
+  </tbody>
+</table>

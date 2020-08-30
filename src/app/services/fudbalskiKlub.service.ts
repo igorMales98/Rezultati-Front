@@ -11,8 +11,8 @@ export class FudbalskiKlubService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getKluboviFromLiga(liga: Liga) {
-    return this.httpClient.get<FudbalskiKlub[]>('http://localhost:8080/fudbalski-klub/' + liga.id);
+  getKluboviFromLigaAndSezona(liga: Liga, sezona: number) {
+    return this.httpClient.get<FudbalskiKlub[]>('http://localhost:8080/fudbalski-klub/' + liga.id + '/' + sezona);
   }
 
 }
