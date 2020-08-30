@@ -1,23 +1,43 @@
-<div style="background-color: #f2f2f2;">
+<mat-progress-bar mode="query" [hidden]="!loading"></mat-progress-bar>
+
+<div style="background-color: #f2f2f2;" [hidden]="loading">
   <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
     <mat-card-header>
       <mat-card-title>{{liga.naziv}}</mat-card-title>
     </mat-card-header>
+    <mat-form-field id="odabir" appearance="outline" style="background-color: #f2f2f2;">
+      <mat-label>Sezona</mat-label>
+      <mat-select [(value)]="odabran" (selectionChange)="dobaviKluboveZaSezonu()">
+        <mat-option [value]="11">2019/2020</mat-option>
+        <mat-option [value]="10">2018/2019</mat-option>
+        <mat-option [value]="9">2017/2018</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-card>
 
   <table class="table table-responsive-lg table-hover">
     <thead class="thead-dark">
     <tr>
+      <th> #</th>
       <th> Naziv kluba</th>
+      <th> Bodovi</th>
       <th> Igrači i trener</th>
+      <th> Rezultati</th>
     </tr>
     </thead>
-    <tbody *ngFor="let klub of klubovi">
+    <tbody *ngFor="let klub of klubovi; index as i;">
     <tr>
+      <td>{{i + 1}}</td>
       <td>{{klub.naziv}}</td>
+      <td>{{klub.bodovi}}</td>
       <td>
         <button mat-mini-fab color="primary" (click)="otvoriInfoOIgracimaITreneru(klub)">
           <mat-icon>people</mat-icon>
+        </button>
+      </td>
+      <td>
+        <button mat-mini-fab color="primary" (click)="otvoriInfoORezultatima(klub)">
+          <mat-icon>history</mat-icon>
         </button>
       </td>
     </tr>

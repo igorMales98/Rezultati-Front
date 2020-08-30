@@ -17,4 +17,12 @@ export class FudbalskiRezultatService {
   getForTheDate(date: Date) {
     return this.httpClient.get<FudbalskiRezultat[]>('http://localhost:8080/fudbalski-rezultat/' + date);
   }
+
+  getPoeniForLigaAndSezonaAndKlub(ligaId: string, sezonaId: number, klubId: string) {
+    return this.httpClient.get<number>('http://localhost:8080/fudbalski-rezultat/bodovi/' + ligaId + '/' + sezonaId + '/' + klubId);
+  }
+
+  getRezultatiForKlub(ligaId: string, sezonaId: number, klubId: string) {
+    return this.httpClient.get<FudbalskiRezultat[]>('http://localhost:8080/fudbalski-rezultat/' + ligaId + '/' + sezonaId + '/' + klubId);
+  }
 }
