@@ -1,0 +1,69 @@
+<div class="container" style="padding-top: 30px; background-color: #f2f2f2;">
+  <div class="row">
+
+    <div class="col-6">
+      <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
+        <mat-card-header>
+          <mat-card-title>Domacin</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+      <br>
+      <label>Posed : </label>
+      <div style="position: relative;">
+        <mat-progress-spinner
+          class="example-margin"
+          color="warn"
+          mode="determinate"
+          [value]="rezultat.informacija.posedDomacin"> {{rezultat.informacija.posedDomacin}}
+        </mat-progress-spinner>
+        <span style="position: absolute; top: 3em; left: 15%;">{{rezultat.informacija.posedDomacin}}
+          %</span>
+      </div>
+      <br>
+      <label>Šutevi : </label>
+      <div style="position: relative">
+        <mat-progress-bar
+          class="example-margin"
+          color="warn"
+          mode="determinate"
+          [value]="(rezultat.informacija.suteviDomacin * 100) / (rezultat.informacija.suteviDomacin + rezultat.informacija.suteviGost)">
+        </mat-progress-bar>
+        <span>{{rezultat.informacija.suteviDomacin}}
+          </span>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
+        <mat-card-header>
+          <mat-card-title>Gost</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+      <br>
+      <label>Posed : </label>
+      <div style="position: relative;">
+        <mat-progress-spinner
+          class="example-margin"
+          color="accent"
+          mode="determinate"
+          [value]="rezultat.informacija.posedGost">
+        </mat-progress-spinner>
+        <span style="position: absolute; top: 3em; left: 15%;">{{rezultat.informacija.posedGost}}
+          %</span>
+      </div>
+      <br>
+      <label>Šutevi : </label>
+      <div style="position: relative">
+        <mat-progress-bar
+          class="example-margin"
+          color="accent"
+          mode="determinate"
+          [value]="(rezultat.informacija.suteviGost * 100) / (rezultat.informacija.suteviDomacin + rezultat.informacija.suteviGost)">
+        </mat-progress-bar>
+        <span>{{rezultat.informacija.suteviGost}}
+          </span>
+      </div>
+    </div>
+
+  </div>
+</div>

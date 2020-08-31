@@ -32,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PrikazRezultataKlubaComponent } from './prikaz-rezultata-kluba/prikaz-rezultata-kluba.component';
+import { PrikazDodatnihInformacijaComponent } from './prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -53,7 +54,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     PrikazKlubovaComponent,
     PrikazIgracaComponent,
     PrikazDodatnihInfoFudbaleraComponent,
-    PrikazRezultataKlubaComponent
+    PrikazRezultataKlubaComponent,
+    PrikazDodatnihInformacijaComponent
   ],
   imports: [
     BrowserModule,

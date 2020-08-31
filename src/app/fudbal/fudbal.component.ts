@@ -9,6 +9,7 @@ import {FormControl} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {MatDialog} from '@angular/material/dialog';
 import {PrikazKlubovaComponent} from '../prikaz-klubova/prikaz-klubova.component';
+import {PrikazDodatnihInformacijaComponent} from '../prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
 
 @Component({
   selector: 'app-fudbal',
@@ -146,6 +147,14 @@ export class FudbalComponent implements OnInit {
       width: '800px',
       height: '800px',
       data: liga
+    });
+  }
+
+  otvoriDodatniInfo(rezultat: FudbalskiRezultat) {
+    this.dialog.open(PrikazDodatnihInformacijaComponent, {
+      width: '600px',
+      height: '600px',
+      data: rezultat
     });
   }
 }
