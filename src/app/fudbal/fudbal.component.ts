@@ -9,6 +9,7 @@ import {FormControl} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {MatDialog} from '@angular/material/dialog';
 import {PrikazKlubovaComponent} from '../prikaz-klubova/prikaz-klubova.component';
+import {PrikazDodatnihInformacijaComponent} from '../prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
 
 @Component({
   selector: 'app-fudbal',
@@ -99,7 +100,9 @@ export class FudbalComponent implements OnInit {
     } else if (tab.index === 1) {
       this.filtrirajTop5();
     } else if (tab.index === 2) {
-      // kad smislis uzivo sta ce biti
+      this.zemljeRezultata = [];
+      this.ligeRezultata = [];
+      this.fudbalskiRezultati = [];
     }
   }
 
@@ -146,6 +149,14 @@ export class FudbalComponent implements OnInit {
       width: '800px',
       height: '800px',
       data: liga
+    });
+  }
+
+  otvoriDodatniInfo(rezultat: FudbalskiRezultat) {
+    this.dialog.open(PrikazDodatnihInformacijaComponent, {
+      width: '600px',
+      height: '600px',
+      data: rezultat
     });
   }
 }
