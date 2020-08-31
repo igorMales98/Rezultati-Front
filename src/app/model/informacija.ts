@@ -7,4 +7,8 @@ export class Informacija {
   posedGost: number;
   suteviDomacin: number;
   suteviGost: number;
+  brojZutihKartonaDomacin: number;
+  brojZutihKartonaGost: number;
+  brojCrvenihKartonaDomacin: number;
+  brojCrvenihKartonaGost: number;
 }

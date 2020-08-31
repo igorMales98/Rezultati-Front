@@ -100,7 +100,9 @@ export class FudbalComponent implements OnInit {
     } else if (tab.index === 1) {
       this.filtrirajTop5();
     } else if (tab.index === 2) {
-      // kad smislis uzivo sta ce biti
+      this.zemljeRezultata = [];
+      this.ligeRezultata = [];
+      this.fudbalskiRezultati = [];
     }
   }
 
