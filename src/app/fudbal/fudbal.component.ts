@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Query} from '@angular/core';
 import {Zemlja} from '../model/zemlja';
 import {ZemljaService} from '../services/zemlja.service';
 import {Router} from '@angular/router';
@@ -11,6 +11,12 @@ import {MatDialog} from '@angular/material/dialog';
 import {PrikazKlubovaComponent} from '../prikaz-klubova/prikaz-klubova.component';
 import {PrikazDodatnihInformacijaComponent} from '../prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
 
+import {Apollo} from 'apollo-angular';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import gql from 'graphql-tag';
+import {ZemljaQL, AllZemljaQuery} from '../graphql/zemljaQL';
+
 @Component({
   selector: 'app-fudbal',
   templateUrl: './fudbal.component.html',
@@ -21,6 +27,7 @@ export class FudbalComponent implements OnInit {
   selektovanPrikaz = 0;
 
   zemlje: Zemlja[] = [];
+  zemljeQL: Observable<ZemljaQL[]>;
   fudbalskiRezultati: FudbalskiRezultat[] = [];
   top5Rezultati: FudbalskiRezultat[] = [];
 
@@ -30,8 +37,9 @@ export class FudbalComponent implements OnInit {
   date = new FormControl(new Date());
   selektovaniDatum: Date;
 
+
   constructor(private zemljaService: ZemljaService, private router: Router, private fudbalskiRezultatService: FudbalskiRezultatService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, private apollo: Apollo) {
     this.selektovaniDatum = new Date();
   }
 
@@ -39,6 +47,21 @@ export class FudbalComponent implements OnInit {
     this.zemljaService.getAll().subscribe(zemlje => {
       this.zemlje = zemlje;
     });
+    console.log('zemlje su na pocetku' + this.zemljeQL);
+    this.zemljeQL = this.apollo.watchQuery<AllZemljaQuery>({
+      query: gql`
+        query allZemlja {
+          id
+          naziv
+          lige {
+            id
+            naziv
+          }
+        }
+      `
+    }).valueChanges.pipe(map(result => result.data.allZemlja));
+    console.log('zemlje su na kraju' + this.zemljeQL[0]);
+
     this.fudbalskiRezultatService.getForTheDate(this.selektovaniDatum).subscribe(rezultati => {
       this.fudbalskiRezultati = rezultati;
       this.srediPrikaz();

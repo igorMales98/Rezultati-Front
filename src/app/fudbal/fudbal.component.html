@@ -1,3 +1,11 @@
+<div class="container">
+  <div *ngFor="let zql of zemljeQL | async">
+    <h1>{{zql.naziv}}</h1>
+
+    <h1>{{zql.lige[0].naziv}}</h1>
+  </div>
+</div>
+
 <div class="container" style="padding-top: 30px;">
   <div class="row">
 
@@ -64,7 +72,8 @@
                   </tr>
                   </thead>
                   <tbody *ngFor="let rezultat of fudbalskiRezultati" style="text-align: center;">
-                  <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id" (click)="otvoriDodatniInfo(rezultat)">
+                  <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id"
+                      (click)="otvoriDodatniInfo(rezultat)">
                     <td>{{(rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[3]
                     + ' : ' + (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
                     <td>{{rezultat.domacin.naziv}}</td>

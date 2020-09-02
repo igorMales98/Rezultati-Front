@@ -25,14 +25,18 @@ import {LoginComponent} from './login/login.component';
 import {RegistracijaComponent} from './registracija/registracija.component';
 import {PrikazKlubovaComponent} from './prikaz-klubova/prikaz-klubova.component';
 import {MatCardModule} from '@angular/material/card';
-import { PrikazIgracaComponent } from './prikaz-igraca/prikaz-igraca.component';
-import { PrikazDodatnihInfoFudbaleraComponent } from './prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
+import {PrikazIgracaComponent} from './prikaz-igraca/prikaz-igraca.component';
+import {PrikazDodatnihInfoFudbaleraComponent} from './prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { PrikazRezultataKlubaComponent } from './prikaz-rezultata-kluba/prikaz-rezultata-kluba.component';
-import { PrikazDodatnihInformacijaComponent } from './prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
+import {PrikazRezultataKlubaComponent} from './prikaz-rezultata-kluba/prikaz-rezultata-kluba.component';
+import {PrikazDodatnihInformacijaComponent} from './prikaz-dodatnih-informacija/prikaz-dodatnih-informacija.component';
+
+import {Apollo, ApolloModule} from 'apollo-angular';
+import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
+import {InMemoryCache} from 'apollo-cache-inmemory';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -79,7 +83,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatBottomSheetModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ApolloModule,
+    HttpLinkModule
   ],
   providers: [
     MatDatepickerModule,
@@ -88,4 +94,16 @@ const globalRippleConfig: RippleGlobalOptions = {
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(apollo: Apollo, httpLink: HttpLink) {
+    apollo.create({
+      link: httpLink.create({uri: 'http://localhost:8080/graphql'}),
+      cache: new InMemoryCache(),
+      defaultOptions: {
+        watchQuery: {
+          fetchPolicy: 'no-cache', // disabling cache for fetch
+          errorPolicy: 'ignore'
+        },
+      },
+    });
+  }
 }
