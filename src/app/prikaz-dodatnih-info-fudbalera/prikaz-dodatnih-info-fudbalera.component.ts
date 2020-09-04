@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {Fudbaler} from '../model/fudbaler';
+import {FudbalerQL} from '../graphql/gqlModel';
 
 @Component({
   selector: 'app-prikaz-dodatnih-info-fudbalera',
@@ -10,7 +11,7 @@ import {Fudbaler} from '../model/fudbaler';
 export class PrikazDodatnihInfoFudbaleraComponent implements OnInit {
 
   constructor(private bottomSheetRef: MatBottomSheetRef<PrikazDodatnihInfoFudbaleraComponent>,
-              @Inject(MAT_BOTTOM_SHEET_DATA) public igrac: Fudbaler) {
+              @Inject(MAT_BOTTOM_SHEET_DATA) public igrac: Fudbaler | FudbalerQL) {
   }
 
   ngOnInit(): void {

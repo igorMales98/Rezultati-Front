@@ -14,6 +14,10 @@ export type BodoviKlubQuery = {
   bodovi: number;
 };
 
+export type RezultatiForKlubQuery = {
+  rezultatiForKlub: FudbalskiRezultatQL[];
+};
+
 export type FudbalskiRezultatQL = {
   id: string;
   vremeOdrzavanjaUtakmice: string;
@@ -54,7 +58,7 @@ export type FudbalerQL = {
   prezime: string;
   datumRodjenja: string;
   zemljaRodjenja: ZemljaQL;
-  pozicija: PozicijaFudbal;
+  pozicija: string;
   fudbalskiKlub: FudbalskiKlubQL;
   status: StatusUTimu;
 };
