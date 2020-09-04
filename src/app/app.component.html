@@ -1,5 +1,9 @@
 <mat-toolbar>
   <a href="#" class="pocetna-link">Rezultati sportova</a>
+  <mat-radio-group aria-label="Select an option" style="padding-left: 100px;" [(ngModel)]="odabran" (ngModelChange)="principPromenjen()">
+    <mat-radio-button [value]="1" color="accent">REST</mat-radio-button>
+    <mat-radio-button [value]="2" style="padding-left: 20px;" color="accent">GraphQL</mat-radio-button>
+  </mat-radio-group>
   <span class="example-spacer"></span>
   <span>Prijava</span>
   <button mat-icon-button class="example-icon favorite-icon" (click)="otvoriPrijavu()">

@@ -37,6 +37,8 @@ import {PrikazDodatnihInformacijaComponent} from './prikaz-dodatnih-informacija/
 import {Apollo, ApolloModule} from 'apollo-angular';
 import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
+import {MatRadioModule} from '@angular/material/radio';
+import {DatePipe} from '@angular/common';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -61,34 +63,37 @@ const globalRippleConfig: RippleGlobalOptions = {
     PrikazRezultataKlubaComponent,
     PrikazDodatnihInformacijaComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatSidenavModule,
-    MatListModule,
-    MDBBootstrapModule.forRoot(),
-    HttpClientModule,
-    MatDatepickerModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatBottomSheetModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    ApolloModule,
-    HttpLinkModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTabsModule,
+        MatSidenavModule,
+        MatListModule,
+        MDBBootstrapModule.forRoot(),
+        HttpClientModule,
+        MatDatepickerModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatBottomSheetModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        ApolloModule,
+        HttpLinkModule,
+        MatRadioModule
+    ],
   providers: [
     MatDatepickerModule,
+    DatePipe,
+    AppComponent,
     {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig}
   ],
   bootstrap: [AppComponent]

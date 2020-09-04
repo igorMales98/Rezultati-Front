@@ -1,4 +1,4 @@
-import {Component, OnInit, Query} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Zemlja} from '../model/zemlja';
 import {ZemljaService} from '../services/zemlja.service';
 import {Router} from '@angular/router';
@@ -15,7 +15,14 @@ import {Apollo} from 'apollo-angular';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import gql from 'graphql-tag';
-import {ZemljaQL, AllZemljaQuery} from '../graphql/zemljaQL';
+import {
+  ZemljaQL,
+  AllZemljaQuery,
+  FudbalskiRezultatQL,
+  FudbalskiRezulatiQuery, LigaQL
+} from '../graphql/gqlModel';
+import {AppComponent} from '../app.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-fudbal',
@@ -28,44 +35,89 @@ export class FudbalComponent implements OnInit {
 
   zemlje: Zemlja[] = [];
   zemljeQL: Observable<ZemljaQL[]>;
+
   fudbalskiRezultati: FudbalskiRezultat[] = [];
+  rezultatiQL: Observable<FudbalskiRezultatQL[]>;
+
   top5Rezultati: FudbalskiRezultat[] = [];
 
   zemljeRezultata: Zemlja[] = [];
+  zemljeRezultataQL: ZemljaQL[] = [];
+
   ligeRezultata: Liga[] = [];
+  ligeRezultataQL: LigaQL[] = [];
 
   date = new FormControl(new Date());
   selektovaniDatum: Date;
 
-
   constructor(private zemljaService: ZemljaService, private router: Router, private fudbalskiRezultatService: FudbalskiRezultatService,
-              public dialog: MatDialog, private apollo: Apollo) {
+              public dialog: MatDialog, private apollo: Apollo, public appComponent: AppComponent, private datePipe: DatePipe) {
     this.selektovaniDatum = new Date();
   }
 
   ngOnInit(): void {
-    this.zemljaService.getAll().subscribe(zemlje => {
-      this.zemlje = zemlje;
-    });
-    console.log('zemlje su na pocetku' + this.zemljeQL);
-    this.zemljeQL = this.apollo.watchQuery<AllZemljaQuery>({
-      query: gql`
-        query allZemlja {
-          id
-          naziv
-          lige {
+
+    if (this.appComponent.odabran === 1) {
+      this.zemljaService.getAll().subscribe(zemlje => {
+        this.zemlje = zemlje;
+      });
+      this.fudbalskiRezultatService.getForTheDate(this.selektovaniDatum).subscribe(rezultati => {
+        this.fudbalskiRezultati = rezultati;
+        this.srediPrikaz();
+      });
+    } else {
+      this.zemljeQL = this.apollo.watchQuery<AllZemljaQuery>({
+        query: gql`
+          query allZemlja {
             id
             naziv
+            lige {
+              id
+              naziv
+              sport {
+                id
+              }
+            }
           }
+        `
+      }).valueChanges.pipe(map(result => result.data.allZemlja));
+      this.rezultatiQL = this.apollo.watchQuery<FudbalskiRezulatiQuery>({
+        query: gql`
+          query rezultatiForDate($date: String) {
+            id
+            vremeOdrzavanjaUtakmice
+            domacin {
+              id
+              naziv
+            }
+            gost {
+              id
+              naziv
+            }
+            liga {
+              id
+            }
+            goloviDomacin
+            goloviGost
+            informacija {
+              id
+              posedDomacin
+              posedGost
+              suteviDomacin
+              suteviGost
+              brojZutihKartonaDomacin
+              brojZutihKartonaGost
+              brojCrvenihKartonaDomacin
+              brojCrvenihKartonaGost
+            }
+          }
+        `,
+        variables: {
+          date: this.datePipe.transform(this.selektovaniDatum, 'yyyyMMddHHmm').toString()
         }
-      `
-    }).valueChanges.pipe(map(result => result.data.allZemlja));
-    console.log('zemlje su na kraju' + this.zemljeQL[0]);
-
-    this.fudbalskiRezultatService.getForTheDate(this.selektovaniDatum).subscribe(rezultati => {
-      this.fudbalskiRezultati = rezultati;
-      this.srediPrikaz();
-    });
+      }).valueChanges.pipe(map(result => result.data.rezultatiForDate));
+      this.srediPrikazQL();
+    }
   }
 
   srediPrikaz() {
@@ -95,23 +147,106 @@ export class FudbalComponent implements OnInit {
     }
   }
 
-  prikaziLige(zemlja: Zemlja) {
+  srediPrikazQL() {
+    let exist = false;
+    let ligaExist = false;
+    this.rezultatiQL.forEach(rezultati => {
+      for (const rezultat of rezultati) {
+        for (const zemlja of this.zemljeRezultataQL) {
+          if (zemlja.id === rezultat.domacin.zemlja.id) {
+            exist = true;
+            break;
+          }
+        }
+        for (const liga of this.ligeRezultataQL) {
+          if (liga.id === rezultat.liga.id) {
+            ligaExist = true;
+            break;
+          }
+        }
+        if (!exist) {
+          this.zemljeRezultataQL.push(rezultat.domacin.zemlja);
+        }
+        if (!ligaExist) {
+          this.ligeRezultataQL.push(rezultat.liga);
+        }
+        exist = false;
+        ligaExist = false;
+      }
+    });
+
+  }
+
+  prikaziLige(zemlja: Zemlja | ZemljaQL) {
     zemlja.prikazaneLige = zemlja.prikazaneLige !== true;
   }
 
   dobaviRezultateZaDatum(event: MatDatepickerInputEvent<Date>) {
     this.selektovanPrikaz = 0;
-    this.zemljeRezultata = [];
-    this.ligeRezultata = [];
-    console.log(event.value);
-    const date = event.value;
-    this.fudbalskiRezultatService.getForTheDate(date).subscribe(rezultati => {
-      this.fudbalskiRezultati = rezultati;
-      this.srediPrikaz();
-      if (this.selektovanPrikaz === 1) {
-        this.filtrirajTop5();
-      }
-    });
+    if (this.appComponent.odabran === 1) {
+      this.zemljeRezultata = [];
+      this.ligeRezultata = [];
+      console.log(event.value);
+      const date = event.value;
+      this.fudbalskiRezultatService.getForTheDate(date).subscribe(rezultati => {
+        this.fudbalskiRezultati = rezultati;
+        this.srediPrikaz();
+        if (this.selektovanPrikaz === 1) {
+          this.filtrirajTop5();
+        }
+      });
+    } else {
+      this.zemljeRezultataQL = [];
+      this.ligeRezultataQL = [];
+      console.log(event.value);
+      const date = event.value;
+      this.rezultatiQL = this.apollo.watchQuery<FudbalskiRezulatiQuery>({
+        query: gql`
+          query rezultatiForDate($date: String) {
+            id
+            vremeOdrzavanjaUtakmice
+            domacin {
+              id
+              naziv
+              zemlja {
+                id
+                naziv
+                lige {
+                  id
+                  naziv
+                }
+              }
+            }
+            gost {
+              id
+              naziv
+            }
+            liga {
+              id
+              naziv
+            }
+            goloviDomacin
+            goloviGost
+            informacija {
+              id
+              posedDomacin
+              posedGost
+              suteviDomacin
+              suteviGost
+              brojZutihKartonaDomacin
+              brojZutihKartonaGost
+              brojCrvenihKartonaDomacin
+              brojCrvenihKartonaGost
+            }
+          }
+        `,
+        variables: {
+          date: this.datePipe.transform(date, 'yyyyMMddHHmm').toString()
+        }
+      }).valueChanges.pipe(map(result => result.data.rezultatiForDate));
+      this.srediPrikazQL();
+    }
+
   }
 
   tabKlik(tab) {
@@ -167,19 +302,21 @@ export class FudbalComponent implements OnInit {
     console.log('proso je');
   }
 
-  prikaziKluboveIzLige(liga: Liga) {
+  prikaziKluboveIzLige(liga: Liga | LigaQL) {
     this.dialog.open(PrikazKlubovaComponent, {
       width: '800px',
       height: '800px',
-      data: liga
+      data: {liga, odabranRezim: this.appComponent.odabran}
     });
   }
 
-  otvoriDodatniInfo(rezultat: FudbalskiRezultat) {
+  otvoriDodatniInfo(rezultat: FudbalskiRezultat | FudbalskiRezultatQL) {
     this.dialog.open(PrikazDodatnihInformacijaComponent, {
       width: '600px',
       height: '600px',
       data: rezultat
     });
   }
+
+
 }

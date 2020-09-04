@@ -11,12 +11,15 @@ import {RegistracijaComponent} from './registracija/registracija.component';
 })
 export class AppComponent implements OnInit {
   title = 'Rezultati-Front';
+  public odabran = 1;
 
   constructor(private router: Router, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['/fudbal']);
+    this.router.navigate(['/kosarka'], {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/fudbal']);
+    });
   }
 
   tabKlik(tab) {
@@ -43,5 +46,10 @@ export class AppComponent implements OnInit {
       width: '650px',
       height: '650px'
     });
+  }
+
+  principPromenjen() {
+    console.log(this.odabran);
+    this.ngOnInit();
   }
 }
