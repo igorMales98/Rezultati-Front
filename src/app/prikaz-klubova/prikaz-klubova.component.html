@@ -1,9 +1,9 @@
 <mat-progress-bar mode="query" [hidden]="!loading"></mat-progress-bar>
 
-<div style="background-color: #f2f2f2;" [hidden]="loading">
+<div style="background-color: #f2f2f2;" [hidden]="loading" *ngIf="data.odabranRezim === 1">
   <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
     <mat-card-header>
-      <mat-card-title>{{liga.naziv}}</mat-card-title>
+      <mat-card-title>{{data.liga.naziv}}</mat-card-title>
     </mat-card-header>
     <mat-form-field id="odabir" appearance="outline" style="background-color: #f2f2f2;">
       <mat-label>Sezona</mat-label>
@@ -43,4 +43,118 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+<div style="background-color: #f2f2f2;" [hidden]="loading" *ngIf="data.odabranRezim === 2">
+  <mat-card class="example-card" style="color: white; background-color: mediumpurple;">
+    <mat-card-header>
+      <mat-card-title>{{data.liga.naziv}}</mat-card-title>
+    </mat-card-header>
+    <mat-form-field id="odabir2" appearance="outline" style="background-color: #f2f2f2;">
+      <mat-label>Sezona</mat-label>
+      <mat-select [(value)]="odabran" (selectionChange)="dobaviKluboveZaSezonu()">
+        <mat-option [value]="11">2019/2020</mat-option>
+        <mat-option [value]="10">2018/2019</mat-option>
+        <mat-option [value]="9">2017/2018</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+
+  <table class="table table-responsive-lg table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th> #</th>
+      <th> Naziv kluba</th>
+      <th> Bodovi</th>
+      <th> Igrači i trener</th>
+      <th> Rezultati</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let klub of kluboviQL | async; index as i;">
+    <tr>
+      <td>{{i + 1}}</td>
+      <td>{{klub.naziv}}</td>
+      <td>{{klub.bodovi}}</td>
+      <td>
+        <button mat-mini-fab color="primary" (click)="otvoriInfoOIgracimaITreneru(klub)">
+          <mat-icon>people</mat-icon>
+        </button>
+      </td>
+      <td>
+        <button mat-mini-fab color="primary" (click)="otvoriInfoORezultatima(klub)">
+          <mat-icon>history</mat-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div [hidden]="true">
+  <div *ngIf="bod[0] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[1] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[2] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[3] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[4] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[5] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[6] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[7] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[8] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[9] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[10] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[11] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[12] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[13] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[14] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[15] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[16] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[17] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[18] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[19] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+  <div *ngIf="bod[20] | async; let bod">
+    <h3> {{bod}} </h3>
+  </div>
+</div>
+<div *ngFor="let r of this.rezultatiKlubaQL | async" [hidden]="true">
+  <h6>{{r.id}}</h6>
 </div>

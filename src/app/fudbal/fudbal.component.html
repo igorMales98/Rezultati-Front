@@ -3,8 +3,16 @@
 
     <div class="col-3">
       <div class="card" style="background-color: #f2f2f2;">
-        <div class="card-body">
+        <div class="card-body" *ngIf="appComponent.odabran === 1">
           <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemlje">
+            <a class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
+            <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
+              <a *ngIf="liga.sport.id == '1'" class="liga-link" (click)="prikaziKluboveIzLige(liga)">{{liga.naziv}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="appComponent.odabran === 2">
+          <div class="zemlja-item border-bottom" *ngFor="let zemlja of zemljeQL | async">
             <a class="zemlja-link" (click)="prikaziLige(zemlja)">{{zemlja.naziv}}</a>
             <div *ngFor="let liga of zemlja.lige" [hidden]="!zemlja.prikazaneLige" class="liga-item">
               <a *ngIf="liga.sport.id == '1'" class="liga-link" (click)="prikaziKluboveIzLige(liga)">{{liga.naziv}}</a>
@@ -27,14 +35,14 @@
                 </ng-template>
               </mat-tab>
 
-              <mat-tab>
+              <mat-tab [disabled]="appComponent.odabran === 2">
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon">filter_5</mat-icon>
                   Top 5
                 </ng-template>
               </mat-tab>
 
-              <mat-tab>
+              <mat-tab [disabled]="appComponent.odabran === 2">
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon">live_tv</mat-icon>
                   Uživo
@@ -53,29 +61,57 @@
 
           </div>
 
-          <div id="rez" *ngFor="let zemlja of zemljeRezultata">
-            <div *ngFor="let liga of ligeRezultata">
-              <div *ngFor="let ligaZemlje of zemlja.lige">
-                <table class="table table-sm table-hover"
-                       *ngIf="liga.id === ligaZemlje.id">
-                  <thead class="thead-dark">
-                  <tr>
-                    <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>
-                  </tr>
-                  </thead>
-                  <tbody *ngFor="let rezultat of fudbalskiRezultati" style="text-align: center;">
-                  <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id" (click)="otvoriDodatniInfo(rezultat)">
-                    <td>{{(rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[3]
-                    + ' : ' + (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
-                    <td>{{rezultat.domacin.naziv}}</td>
-                    <td>{{rezultat.goloviDomacin + '  -  ' + rezultat.goloviGost}}</td>
-                    <td>{{rezultat.gost.naziv}}</td>
-                  </tr>
-                  </tbody>
-                </table>
+          <div *ngIf="appComponent.odabran === 1">
+            <div id="rez" *ngFor="let zemlja of zemljeRezultata">
+              <div *ngFor="let liga of ligeRezultata">
+                <div *ngFor="let ligaZemlje of zemlja.lige">
+                  <table class="table table-sm table-hover"
+                         *ngIf="liga.id === ligaZemlje.id">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let rezultat of fudbalskiRezultati" style="text-align: center;">
+                    <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id"
+                        (click)="otvoriDodatniInfo(rezultat)">
+                      <td>{{(rezultat.vremeOdrzavanjaUtakmice[3] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[3]
+                      + ' : ' + (rezultat.vremeOdrzavanjaUtakmice[4] < 10 ? '0' : '') + rezultat.vremeOdrzavanjaUtakmice[4]}}</td>
+                      <td>{{rezultat.domacin.naziv}}</td>
+                      <td>{{rezultat.goloviDomacin + '  -  ' + rezultat.goloviGost}}</td>
+                      <td>{{rezultat.gost.naziv}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
+          </div>
 
+          <div *ngIf="appComponent.odabran === 2">
+            <div id="rez2" *ngFor="let zemlja of zemljeRezultataQL">
+              <div *ngFor="let liga of ligeRezultataQL">
+                <div *ngFor="let ligaZemlje of zemlja.lige">
+                  <table class="table table-sm table-hover"
+                         *ngIf="liga.id === ligaZemlje.id">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th scope="col" [colSpan]="4">{{zemlja.naziv + ' : ' + liga.naziv}}</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let rezultat of rezultatiQL | async" style="text-align: center;">
+                    <tr *ngIf="rezultat.domacin.zemlja.id == zemlja.id && rezultat.liga.id == liga.id"
+                        (click)="otvoriDodatniInfo(rezultat)">
+                      <td>{{rezultat.vremeOdrzavanjaUtakmice.substr(11)}}</td>
+                      <td>{{rezultat.domacin.naziv}}</td>
+                      <td>{{rezultat.goloviDomacin + '  -  ' + rezultat.goloviGost}}</td>
+                      <td>{{rezultat.gost.naziv}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>

@@ -4,6 +4,7 @@ import {FudbalskiKlub} from '../model/fudbalskiKlub';
 import {Fudbaler} from '../model/fudbaler';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {PrikazDodatnihInfoFudbaleraComponent} from '../prikaz-dodatnih-info-fudbalera/prikaz-dodatnih-info-fudbalera.component';
+import {FudbalskiKlubQL} from '../graphql/gqlModel';
 
 @Component({
   selector: 'app-prikaz-igraca',
@@ -12,7 +13,7 @@ import {PrikazDodatnihInfoFudbaleraComponent} from '../prikaz-dodatnih-info-fudb
 })
 export class PrikazIgracaComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public klub: FudbalskiKlub, private bottomSheet: MatBottomSheet) {
+  constructor(@Inject(MAT_DIALOG_DATA) public klub: FudbalskiKlub | FudbalskiKlubQL, private bottomSheet: MatBottomSheet) {
   }
 
   ngOnInit(): void {
